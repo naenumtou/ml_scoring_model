@@ -385,9 +385,9 @@ def create_due_ovd_features(
     for w in month_ranges:
         cols = _lag_cols(feature_col, w)
         window = df[cols]
-        df[f"avg_{feature_col}_{w}"] = window.sum(axis = 1, numeric_only = True) / w
-        df[f"max_{feature_col}_{w}"] = window.max(axis = 1, numeric_only = True)
-        df[f"min_{feature_col}_{w}"] = window.min(axis = 1, numeric_only = True)
+        df[f"avg_{feature_col}_{w}"] = window.sum(axis = 1) / w
+        df[f"max_{feature_col}_{w}"] = window.max(axis = 1)
+        df[f"min_{feature_col}_{w}"] = window.min(axis = 1)
     
     for w in month_ranges:
         df[f"{feature_col}_to_avg_{feature_col}_{w}"] = _safe_div(df[feature_col], df[f"avg_{feature_col}_{w}"])
@@ -488,9 +488,9 @@ def create_pay_features(
     for w in month_ranges:
         cols = _lag_cols(feature_col[0], w)
         window = df[cols]
-        df[f"avg_{feature_col[0]}_{w}"] = window.sum(axis = 1, numeric_only = True) / w
-        df[f"max_{feature_col[0]}_{w}"] = window.max(axis = 1, numeric_only = True)
-        df[f"min_{feature_col[0]}_{w}"] = window.min(axis = 1, numeric_only = True)
+        df[f"avg_{feature_col[0]}_{w}"] = window.sum(axis = 1) / w
+        df[f"max_{feature_col[0]}_{w}"] = window.max(axis = 1)
+        df[f"min_{feature_col[0]}_{w}"] = window.min(axis = 1)
 
     if init_col is None:
         pass
@@ -575,30 +575,32 @@ def create_delinquency_features(
     """
 
     print("=== Processing ===\n[Delinquency features creation]")
-
+    
+    dpd_labels = ["x", "30", "60", "90"] #Define label for columns name
+    
     for w in month_ranges:
         cols = _lag_cols(feature_col, w)
         window = df[cols]
-        cat_type = CategoricalDtype(categories = [i for i in range(1, w + 1)], ordered = True)
-        df[f"max_{feature_col}_{w}"] = window.max(axis = 1, numeric_only = True)
+        cat_type = CategoricalDtype(categories = [i for i in range(0, len(dpd_labels) + 1)], ordered = True) #Possible delinquency values
+        df[f"max_{feature_col}_{w}"] = window.max(axis = 1)
         df[f"max_{feature_col}_{w}"] = df[f"max_{feature_col}_{w}"].astype(cat_type)
 
-    dpd_labels = ["x", "30", "60", "90"] #Define label for columns name
     for w in month_ranges:
         cols = _lag_cols(feature_col, w)
         window = df[cols]
-        cat_type = CategoricalDtype(categories = [i for i in range(1, w + 1)], ordered = True)
+        cat_type_ever = CategoricalDtype(categories = [0, 1], ordered = True) #Ever values (0, 1)
+        cat_type = CategoricalDtype(categories = [i for i in range(0, w + 1)], ordered = True) #Start from 0 when count not match
         for threshold, label in enumerate(dpd_labels, start = 1):
             mask = window.ge(threshold)
             df[f"ever_{label}_dpd_{w}"] = mask.any(axis = 1).astype(int)
-            df[f"ever_{label}_dpd_{w}"] = df[f"ever_{label}_dpd_{w}"].astype(cat_type)
+            df[f"ever_{label}_dpd_{w}"] = df[f"ever_{label}_dpd_{w}"].astype(cat_type_ever)
             df[f"n_{label}_dpd_{w}"] = mask.sum(axis = 1)
             df[f"n_{label}_dpd_{w}"] = df[f"n_{label}_dpd_{w}"].astype(cat_type)
 
     # Months since last status uses full 12-month history
     cols = _lag_cols(feature_col, n_lags)
     full_window = df[cols].values
-    cat_type = CategoricalDtype(categories = [i for i in range(0, n_lags + 1)], ordered = True)
+    cat_type = CategoricalDtype(categories = [i for i in range(0, n_lags + 1)], ordered = True) #Start from 0 when count not match
     for threshold, label in enumerate(dpd_labels, start = 1):
         condition = full_window == threshold
         any_hit = condition.any(axis = 1)
@@ -611,7 +613,7 @@ def create_delinquency_features(
 
     # Consecutive delinquency run (vectorised)
     for w in month_ranges:
-        cat_type = CategoricalDtype(categories = [i for i in range(0, w + 1)], ordered = True)
+        cat_type = CategoricalDtype(categories = [i for i in range(0, w + 1)], ordered = True) #Start from 0 when count not match
         for threshold, label in enumerate(dpd_labels, start = 1):
             df[f"{feature_col}_{label}_run_{w}"] = _consecutive_long_vectorised(
                 df, feature_col, w, threshold = threshold
