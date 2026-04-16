@@ -196,13 +196,13 @@ def create_lag_features(
 
     Description:
         The n-lags of column features are created by primary key. 
-        'w' is windows refering to the observation months.
-        bal{w}          Account balance lagged w months.
-        pay{w}          Payment amount lagged w months.
-        pay_types{w}    Payment types lagged w months.
-        due{w}          Due amount lagged w months.
-        ovd{w}          Overdue amount lagged w months.
-        del{w}          Delinquency status lagged w months.
+        'n_lags' is windows refering to the observation months.
+        bal{w}          Account balance lagged n_lags months.
+        pay{w}          Payment amount lagged n_lags months.
+        pay_types{w}    Payment types lagged n_lags months.
+        due{w}          Due amount lagged n_lags months.
+        ovd{w}          Overdue amount lagged n_lags months.
+        del{w}          Delinquency status lagged n_lags months.
 
     Args:
         df (pd.DataFrame)   : Input dataframe.
