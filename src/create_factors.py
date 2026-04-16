@@ -275,9 +275,9 @@ def create_balance_features(
     for w in month_ranges:
         cols = _lag_cols(feature_col, w)
         window = df[cols]
-        df[f"avg_{feature_col}_{w}"] = window.sum(axis = 1, numeric_only = True) / w
-        df[f"max_{feature_col}_{w}"] = window.max(axis = 1, numeric_only = True)
-        df[f"min_{feature_col}_{w}"] = window.min(axis = 1, numeric_only = True)
+        df[f"avg_{feature_col}_{w}"] = window.sum(axis = 1) / w
+        df[f"max_{feature_col}_{w}"] = window.max(axis = 1)
+        df[f"min_{feature_col}_{w}"] = window.min(axis = 1)
 
     for w in month_ranges:
         df[f"{feature_col}_to_avg_{feature_col}_{w}"] = _safe_div(df[feature_col], df[f"avg_{feature_col}_{w}"])
