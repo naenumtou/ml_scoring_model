@@ -5,7 +5,7 @@ import pandas as pd
 
 from pandas import CategoricalDtype
 
-warnings.simplefilter(action ='ignore', category = pd.errors.PerformanceWarning)
+warnings.simplefilter(action = 'ignore', category = pd.errors.PerformanceWarning)
 
 # Helper functions
 def _safe_div(
