@@ -6,6 +6,8 @@ import pandas as pd
 from pandas import CategoricalDtype
 
 warnings.simplefilter(action = 'ignore', category = pd.errors.PerformanceWarning)
+warnings.filterwarnings('ignore', category = RuntimeWarning)
+warnings.filterwarnings('ignore', category = UserWarning)
 
 # Helper functions
 def _safe_div(
