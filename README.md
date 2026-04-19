@@ -11,6 +11,8 @@
 Machine Learning–based scoring model for risk / propensity / credit-style scoring.
 Designed for real-world usage with explainability, stability, and production readiness in mind.
 
+<img width="1376" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/02e48760-0234-40b0-a1cb-3e675249331e" />
+
 ## Overview
 This project builds a **scoring model** using supervised ML to predict a target score (e.g. default risk or probability of default).
 The workflow follows industry-standard model development practices.
