@@ -19,7 +19,6 @@ This project builds a **scoring model** using supervised ML to predict a target 
 The workflow follows industry-standard model development practices.
 
 ## Project Structure
-
 ```
 ml_scoring_model/
 ├── models/       #Trainned model (.cbm) and study parameters (pkl.)
@@ -40,3 +39,9 @@ ml_scoring_model/
 ├── requirements.txt
 └── README.md
 ```
+
+## Project Details
+...
+
+## License
+MIT · Built for learning purposes
