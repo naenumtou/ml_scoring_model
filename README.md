@@ -16,3 +16,26 @@ Designed for real-world usage with explainability, stability, and production rea
 ## Overview
 This project builds a **scoring model** using supervised ML to predict a target score (e.g. default risk or probability of default).
 The workflow follows industry-standard model development practices.
+
+## Project Structure
+
+```
+ml_scoring_model/
+├── models/       #Trainned model (.cbm) and study parameters (pkl.)
+├── notebooks/
+│   ├── 01_factor_creation.ipynb
+│   ├── 02_data_sampling.ipynb
+│   ├── 03_modeling.ipynb
+│   └── ...
+├── src/
+│   ├── create_factor.py
+│   ├── modified_sampling.py
+│   ├── features_prep.py
+│   ├── features_selection.py
+│   ├── mixed_matrix.py
+│   ├── cluster_analysis.py
+│   └── ...
+├── data/         #Not tracked by git
+├── requirements.txt
+└── README.md
+```
