@@ -53,7 +53,7 @@ Raw transaction data is often too granular and noisy for machine learning models
 | 3 | Repayment | The act of a borrower paying back the principal and interest on a loan or credit facility. |
 | 4 | Delinquency status | A snapshot of how many days a payment is overdue. It is typically measured in Days Past Due (DPD), categorized into buckets. |
 
-### 2. Factor Creation
+### 2. Factors Creation
 
 <img width="1408" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/70111913-c4cc-438c-9831-0bfac837c006" />
 
