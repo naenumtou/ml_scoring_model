@@ -79,6 +79,10 @@ To mitigate this, the modified train/test split of customer level partitioning s
 
 ### 4. Model Development
 #### 4.1 Features Preparation
+
+<img width="1408" height="620" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/d8674e5f-5354-4fbf-94ed-4b0033a08f60" />
+
+
 #### 4.2 Features Selection
 #### 4.3 Cluster Analysis
 #### 4.4 Pilot Model
