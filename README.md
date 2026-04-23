@@ -36,6 +36,8 @@ ml_scoring_model/
 │   ├── features_selection.py
 │   ├── mixed_matrix.py
 │   ├── cluster_analysis.py
+│   ├── model_builder.py
+│   ├── score_construct.py
 │   └── ...
 ├── data/         #Not tracked by git
 ├── requirements.txt
