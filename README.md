@@ -69,9 +69,27 @@ The example of behavioral factors are listed below:
 | 3 | n_fully_pay_3 | The number of months (times) that fully payment made over the last 3 months. |
 | 4 | max_del_3 | The maximum delinquency over the last 3 months |
 
+### 3. Modified Train/Test Split
+Unlike a standard train/test split even one stratified on the default rate, the behavioral data is designed to capture granular on transaction level patterns over time. A traditional random split at the record level can lead to data leakage, where a single customer’s history is fragmented across both training and testing sets, resulting in an over optimistic model.
+
+
+To mitigate this, the modified train/test split of customer level partitioning strategy is implemented to ensure that all records belonging to a specific customer are confined to only one dataset. Furthermore, this split was meticulously balanced to minimize the variance in default rates across both the global population and on a month by month basis, ensuring the model's stability and performance remain consistent over time.
+
+<img width="1376" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/039185c8-1e7e-47aa-ab4c-ef9b5e921320" />
+
+### 4. Model Development
+#### 4.1 Features Preparation
+#### 4.2 Features Selection
+#### 4.3 Cluster Analysis
+#### 4.4 Pilot Model
+#### 4.5 Training Model
+
+### 5. Score Development
+#### 5.1 Optimized Base Odds and Point of Double Odds (PDO)
+
+
+### 6. Result
 ...
-
-
 
 ## License
 MIT · Built for learning purposes
