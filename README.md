@@ -91,9 +91,17 @@ The automated feature selection is performed by creating a `competition` between
 
 
 
-#### 4.3 Cluster Analysis
-#### 4.4 Pilot Model
-#### 4.5 Training Model
+#### 4.3 Cluster Analysis and Pilot Model
+This step represents an advanced feature selection pipeline designed to eliminate data redundancy using a combination of statistical clustering and machine learning. It follows a 3 steps logical flow:
+
+1. Grouping Redundant Variables (Hierarchical Clustering): The cluster analysis calculates a "Distance Matrix" based on feature correlations. If features are highly correlated (e.g., > 70%), they are considered redundant and grouped into the same cluster.
+2. Evaluating real impact (SHAP Importance): The shap model builds a quick "Pilot Model" using `CatBoost`. Instead of just looking at linear correlations, it uses **SHAP Importance** to measure how much each feature actually contributes to the model's predictions. This ensures that we know which variables are truly powerful and which are just noise.
+3. Smart Representative Selection: The function is the final decision-maker. It looks at each cluster and picks the "Best Representative" based on two main criteria 1) Performance: It prioritizes the feature with the highest SHAP Score within its cluster. 2) Diversity: It ensures that different feature groups are represented, dropping the redundant "weaker" versions. As a result, the high performing list of features while dropping the redundant ones to prevent overfitting.
+
+<img width="1408" height="768" alt="Gemini_Generated_Image_flxj91flxj91flxj" src="https://github.com/user-attachments/assets/a8f176e8-6e48-4cb3-84ce-7ec9fe9e1ee1" />
+
+
+#### 4.4 Training Model
 
 ### 5. Score Development
 #### 5.1 Optimized Base Odds and Point of Double Odds (PDO)
