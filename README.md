@@ -79,6 +79,9 @@ To mitigate this, the modified train/test split of customer level partitioning s
 
 ### 4. Model Development
 #### 4.1 Features Preparation
+The process transforms categorical labels into numerical values using K-Fold Target Encoding. Instead of just calculating a simple average of the target for each category, it uses cross-validation to ensure that the value assigned to a row is calculated from other data "folds." This prevents the model from "cheating" (data leakage) and reduces overfitting. It also uses "smoothing" to balance category means with the global average and smartly fills any missing or new categories with the overall mean.
+
+The process then cleans up numerical data by filling in missing values using MICE (Multiple Imputation by Chained Equations). Rather than just plugging in a static mean or median, it treats every missing value as a target to be predicted by a Bayesian Ridge model based on other available features. It also automatically converts infinite values to nulls so they can be imputed properly, ensuring your final dataset is complete, statistically sound, and ready for feature selection.
 
 <img width="1408" height="620" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/d8674e5f-5354-4fbf-94ed-4b0033a08f60" />
 
