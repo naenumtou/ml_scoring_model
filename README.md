@@ -84,6 +84,10 @@ To mitigate this, the modified train/test split of customer level partitioning s
 
 
 #### 4.2 Features Selection
+The automated feature selection is performed by creating a `competition` between your real data and randomized noise. First, it generates shadow features by shuffling the values of your original data to destroy any actual relationship with the target. It then trains a `LightGBM` model on both the real and shadow features combined, measuring their gain importance. The function calculates a selection threshold based on the average performance of these shadow features (scaled by threshold adjustment parameter). Finally, it filters out any original features that did not perform significantly better than the randomized shadows.
+
+
+
 #### 4.3 Cluster Analysis
 #### 4.4 Pilot Model
 #### 4.5 Training Model
