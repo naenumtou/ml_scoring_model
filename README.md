@@ -13,7 +13,6 @@ Designed for real-world usage with explainability, stability, and production rea
 
 <img width="1375" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/96d8358d-a0fb-40fc-92df-e6bb6e4d8848" />
 
-
 ## Overview
 A Behavioral Score (B-Score) is a statistical model used to assess the credit risk of existing customers based on their historical behavior with a financial institution. Unlike an Application Score (A-Score), which uses "static" data from the time of enrollment, the B-Score is dynamic, evolving as the customer interacts with the product.
 
@@ -56,9 +55,19 @@ Raw transaction data is often too granular and noisy for machine learning models
 | 4 | Delinquency status | A snapshot of how many days a payment is overdue. It is typically measured in Days Past Due (DPD), categorized into buckets. |
 
 ### 2. Factors Creation
+The primary reason for creating behavioral factors is to transform massive, noisy transaction data into dynamic insights that reflect a customer's current financial health. Unlike static application data, behavioral factors capture trends such as shifting spending patterns, declining repayment habits, or increasing credit reliance that allowing the model to detect "early warning signs" months before an actual default occurs.
 
 <img width="1408" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/70111913-c4cc-438c-9831-0bfac837c006" />
 
+$~$
+
+The example of behavioral factors are listed below:
+| No. | Factor | Description |
+|------|--------|-------------|
+| 1 | avg_bal_3 | The average of account balance over the last 3 months. |
+| 2 | max_due_3_to_fin | The maximum due amount over the last 3 months to initial financial amount. |
+| 3 | n_fully_pay_3 | The number of months (times) that fully payment made over the last 3 months. |
+| 4 | max_del_3 | The maximum delinquency over the last 3 months |
 
 ...
 
