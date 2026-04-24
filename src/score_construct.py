@@ -139,7 +139,7 @@ def find_best_pdo(
     X: pd.DataFrame,
     y: pd.Series,
     base_score: int = 600,
-    base_odds: int = None,
+    base_odds: int,
     eps: float = 1e-6,
 ) -> int:
 
