@@ -126,6 +126,7 @@ def find_base_odds(
     """
 
     actual_default = y.mean()
+    
     return int((1 - actual_default) / actual_default)
 
 # Find PDO
