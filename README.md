@@ -123,9 +123,33 @@ The `run_optuna` function automates hyperparameter optimization for a CatBoost c
 <img width="1408" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/972af4ae-d39d-41f9-91a3-d9a78b8549c6" />
 </p>
 
-
 #### 5.1 Optimized Base Odds and Point of Double Odds (PDO)
+* Calculate Natural Odds: Analyzes the target variable ($y$) to find the ratio of "Good" vs "Bad" customers in the real world.
+* Optimization Loop: Tests various PDO values (10 to 100) to find the "Sweet Spot" where scores are well-separated (high standard deviation) but not excessively capped at the limits (300 or 850).
 
+...Pending...
+
+#### 5.2 The Core Transformation
+The engine uses a logarithmic transformation to ensure that as risk decreases, the score increases.
+
+
+The Math Behind the Score:
+
+* Factor: $PDO / \ln(2)$ — Determines how many points represent a doubling of odds.
+* Offset: $BaseScore - (Factor \times \ln(BaseOdds))$ — Sets the starting point of the scale.
+* Odds Calculation: $(1 - P) / P$ — Converts probability of default into "Good" odds.Final Score: $Offset + (Factor \times \ln(Odds))$
+
+#### 5.3 Segmentation & Binning
+_Goal: Categorize scores into actionable risk bands._
+
+
+Once scores are generated, we must decide how to group them. This code supports three distinct strategies:
+* 📏 Equal Interval: Splits the score range (e.g., 300–850) into equal-sized chunks.
+* 👥 Quantile (Equal Population): Ensures each "bin" or "grade" has the same number of customers.
+* 🔔 Normal Distribution: Uses statistical probability (mean and standard deviation) to set cut-points, focusing more resolution around the average.
+
+#### 5.4 Back-testing
+* KS Statistic: Measures the maximum separation between the cumulative distributions of Good and Bad customers.
 
 ### 6. Result
 ...
