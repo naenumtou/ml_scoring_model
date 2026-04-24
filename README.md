@@ -27,7 +27,7 @@ ml_scoring_model/
 │   ├── 01_factor_creation.ipynb
 │   ├── 02_data_sampling.ipynb
 │   ├── 03_modeling.ipynb
-│   └── ...
+│   └── 04_score_evaluation.ipynb
 ├── src/
 │   ├── create_factor.py
 │   ├── modified_sampling.py
@@ -37,7 +37,7 @@ ml_scoring_model/
 │   ├── cluster_analysis.py
 │   ├── model_builder.py
 │   ├── score_construct.py
-│   └── ...
+│   └── back_testing.py
 ├── data/         #Not tracked by git
 ├── requirements.txt
 └── README.md
