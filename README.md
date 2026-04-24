@@ -89,7 +89,7 @@ The process then cleans up numerical data by filling in missing values using MIC
 #### 4.2 Features Selection
 The automated feature selection is performed by creating a `competition` between your real data and randomized noise. First, it generates shadow features by shuffling the values of your original data to destroy any actual relationship with the target. It then trains a `LightGBM` model on both the real and shadow features combined, measuring their gain importance. The function calculates a selection threshold based on the average performance of these shadow features (scaled by threshold adjustment parameter). Finally, it filters out any original features that did not perform significantly better than the randomized shadows.
 
-
+<img width="1408" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/f98d0cea-b77f-424d-b0a7-084abd181094" />
 
 #### 4.3 Cluster Analysis and Pilot Model
 This step represents an advanced feature selection pipeline designed to eliminate data redundancy using a combination of statistical clustering and machine learning. It follows a 3 steps logical flow:
