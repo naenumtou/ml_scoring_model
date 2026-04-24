@@ -50,16 +50,18 @@ Raw transaction data is often too granular and noisy for machine learning models
 | No. | Aspect | Description |
 |------|--------|-------------|
 | 1 | Account balance | The total amount of money remaining in a customer’s account (or the total debt owed on a credit line) at a specific point in time. |
-| 2 | Due amount | The portion of the total balance that must be paid—including the principal, interest, and fees within the current billing cycle. |
+| 2 | Due amount | The portion of the total balance that must be paid including; the principal, interest, and fees within the current billing cycle. |
 | 3 | Repayment | The act of a borrower paying back the principal and interest on a loan or credit facility. |
 | 4 | Delinquency status | A snapshot of how many days a payment is overdue. It is typically measured in Days Past Due (DPD), categorized into buckets. |
 
 ### 2. Factors Creation
+
+<p align="center">
+<img width="1408" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/70111913-c4cc-438c-9831-0bfac837c006" />
+</p>
+
 The primary reason for creating behavioral factors is to transform massive, noisy transaction data into dynamic insights that reflect a customer's current financial health. Unlike static application data, behavioral factors capture trends such as shifting spending patterns, declining repayment habits, or increasing credit reliance that allowing the model to detect "early warning signs" months before an actual default occurs.
 
-<img width="1408" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/70111913-c4cc-438c-9831-0bfac837c006" />
-
-$~$
 
 The example of behavioral factors are listed below:
 | No. | Factor | Description |
@@ -70,12 +72,15 @@ The example of behavioral factors are listed below:
 | 4 | max_del_3 | The maximum delinquency over the last 3 months |
 
 ### 3. Modified Train/Test Split
+
+<p align="center">
+<img width="1376" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/039185c8-1e7e-47aa-ab4c-ef9b5e921320" />
+</p>
+
 Unlike a standard train/test split even one stratified on the default rate, the behavioral data is designed to capture granular on transaction level patterns over time. A traditional random split at the record level can lead to data leakage, where a single customer’s history is fragmented across both training and testing sets, resulting in an over optimistic model.
 
 
 To mitigate this, the modified train/test split of customer level partitioning strategy is implemented to ensure that all records belonging to a specific customer are confined to only one dataset. Furthermore, this split was meticulously balanced to minimize the variance in default rates across both the global population and on a month by month basis, ensuring the model's stability and performance remain consistent over time.
-
-<img width="1376" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/039185c8-1e7e-47aa-ab4c-ef9b5e921320" />
 
 ### 4. Model Development
 #### 4.1 Features Preparation
@@ -83,13 +88,16 @@ The process transforms categorical labels into numerical values using K-Fold Tar
 
 The process then cleans up numerical data by filling in missing values using MICE (Multiple Imputation by Chained Equations). Rather than just plugging in a static mean or median, it treats every missing value as a target to be predicted by a Bayesian Ridge model based on other available features. It also automatically converts infinite values to nulls so they can be imputed properly, ensuring your final dataset is complete, statistically sound, and ready for feature selection.
 
+<p align="center">
 <img width="1408" height="620" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/d8674e5f-5354-4fbf-94ed-4b0033a08f60" />
-
+</p>
 
 #### 4.2 Features Selection
 The automated feature selection is performed by creating a `competition` between your real data and randomized noise. First, it generates shadow features by shuffling the values of your original data to destroy any actual relationship with the target. It then trains a `LightGBM` model on both the real and shadow features combined, measuring their gain importance. The function calculates a selection threshold based on the average performance of these shadow features (scaled by threshold adjustment parameter). Finally, it filters out any original features that did not perform significantly better than the randomized shadows.
 
+<p align="center">
 <img width="1408" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/f98d0cea-b77f-424d-b0a7-084abd181094" />
+</p>
 
 #### 4.3 Cluster Analysis and Pilot Model
 This step represents an advanced feature selection pipeline designed to eliminate data redundancy using a combination of statistical clustering and machine learning. It follows a 3 steps logical flow:
@@ -98,15 +106,24 @@ This step represents an advanced feature selection pipeline designed to eliminat
 2. Evaluating real impact (SHAP Importance): The shap model builds a quick "Pilot Model" using `CatBoost`. Instead of just looking at linear correlations, it uses **SHAP Importance** to measure how much each feature actually contributes to the model's predictions. This ensures that we know which variables are truly powerful and which are just noise.
 3. Smart Representative Selection: The function is the final decision-maker. It looks at each cluster and picks the "Best Representative" based on two main criteria 1) Performance: It prioritizes the feature with the highest SHAP Score within its cluster. 2) Diversity: It ensures that different feature groups are represented, dropping the redundant "weaker" versions. As a result, the high performing list of features while dropping the redundant ones to prevent overfitting.
 
+<p align="center">
 <img width="1408" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/a8f176e8-6e48-4cb3-84ce-7ec9fe9e1ee1" />
-
+</p>
 
 #### 4.4 Training Model
 The `run_optuna` function automates hyperparameter optimization for a CatBoost classifier by integrating Optuna with a 5-fold Stratified K-Fold cross-validation strategy. It specifically addresses class imbalance by dynamically calculating a `scale_pos_weight` and explores a multi-dimensional search space—including iterations, depth, and learning rate—to maximize the mean AUC score. After completing the specified trials, the function automatically re-fits the model using the optimal parameters on the entire training dataset, returning both the finalized production-ready model and the detailed optimization study object.
 
+<p align="center">
 <img width="1408" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/57e84f94-b2c9-4cf0-bd19-adcb5e797c0d" />
+</p>
 
 ### 5. Score Development
+
+<p align="center">
+<img width="1408" height="768" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/972af4ae-d39d-41f9-91a3-d9a78b8549c6" />
+</p>
+
+
 #### 5.1 Optimized Base Odds and Point of Double Odds (PDO)
 
 
