@@ -102,11 +102,6 @@ def _compute_cutpoints(
 
     cutpoints = np.unique(cutpoints.round(1)) #Avoid duplicate cutpoints
     
-    # Check if unique < n_bins + 1 --> Warning
-    #if len(cutpoints) < n_bins + 1:
-    #    print(f"Warning: ได้ {len(cutpoints) - 1} bins จริง (ขอ {n_bins})"
-    #           f" เพราะ score range แคบเกินไป")
-    
     return cutpoints.tolist()
 
 # Find base odds
