@@ -461,7 +461,7 @@ def plot_monthly(
     Plot monthly ODR Sample.
 
     Description:
-        Plot monthly defaualt rates from difference sample.
+        Plot monthly default rates from difference sample.
 
     Args:
         all_data (pd.DataFrame)     : Input total dataframe.
