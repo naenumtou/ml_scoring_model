@@ -33,7 +33,7 @@ def cramers_v(
              divided by the sample size and the minimum dimension minus 1.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     confusion = pd.crosstab(x, y)
@@ -69,7 +69,7 @@ def correlation_ratio(
              divided by the overall sum of squares of the differences from the overall average.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     grand_mean = num.mean()
@@ -103,7 +103,7 @@ def build_mixed_correlation(
         pd.DataFrame: The mixed data correlation matrix with n*n shape.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     print("=== Processing ===\n[Correlation matrix for mixed data]")
@@ -161,7 +161,7 @@ def plot_matrix(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     plt.figure(figsize = (21, 10))
