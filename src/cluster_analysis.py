@@ -98,7 +98,7 @@ def plot_dendrogram(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     cols = corr_matrix.columns.tolist()
