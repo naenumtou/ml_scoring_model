@@ -411,7 +411,7 @@ def plot_overall(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     data = pd.concat(
@@ -474,7 +474,7 @@ def plot_monthly(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     dates = pd.date_range(
