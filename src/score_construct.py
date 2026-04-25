@@ -122,7 +122,7 @@ def find_base_odds(
         int: Actual base odds.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     actual_default = y.mean()
@@ -157,7 +157,7 @@ def find_best_pdo(
         int: The best PDO.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     prob_cal = base_model.predict_proba(X)[:, 1]
@@ -311,7 +311,7 @@ def plot_score_distribution(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     good_scores = scores[target == good_label]
@@ -374,7 +374,7 @@ def sample_scorecard_report(
         Print: Showing scoring report.
 
     Notes:
-        - N/A
+        - N/A.
     """
     
     X_sample = X.sample(n = 1)
@@ -433,7 +433,7 @@ def assign_score_bands(
         pd.Series: The series of bin labels (B1, B2, ...).
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     if bins is not None:
