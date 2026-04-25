@@ -37,7 +37,7 @@ def run_optuna(
         Study object: The output from optuna.study.Study.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     print("=== Processing ===\n[Model building]")
