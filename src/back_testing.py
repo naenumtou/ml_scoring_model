@@ -32,7 +32,7 @@ def bin_summary(
         pd.DataFrame: The summary table for statistical tests.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     df = pd.DataFrame(
@@ -87,7 +87,7 @@ def plot_roc(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     roc = (cum_good - cum_good.shift(1, fill_value = 0)) * (cum_bad + cum_bad.shift(1, fill_value = 0)) * 0.5
@@ -136,7 +136,7 @@ def plot_ks(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     diff = (cum_good - cum_bad).abs()
@@ -191,7 +191,7 @@ def plot_classification_monthly(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     df = pd.DataFrame(
@@ -296,7 +296,7 @@ def plot_stability_monthly(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """   
 
     df = pd.DataFrame(
