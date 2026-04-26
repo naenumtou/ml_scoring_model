@@ -167,7 +167,7 @@ def plot_ks(
     plt.legend(frameon = True, facecolor = 'white')
     plt.tight_layout()
 
-    return
+    return plt.show()
 
 # Plot monthly classification back-testing
 def plot_classification_monthly(
