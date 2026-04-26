@@ -139,11 +139,11 @@ def plot_ks(
         - N/A.
     """
 
-    diff = (cum_good - cum_bad).abs()
+    diff = (cum_good - cum_bad).abs().reset_index(drop = True)
     ks = diff.max()
     ks_idx = diff.idxmax()
-    cg = cum_good.loc[ks_idx]
-    cb = cum_bad.loc[ks_idx]
+    cg = cum_good.reset_index(drop = True).loc[ks_idx]
+    cb = cum_bad.reset_index(drop = True).loc[ks_idx]
 
     plt.figure(figsize = (10, 6))
     colorY = '#ffd500' #Set color theme --> Yellow
