@@ -151,13 +151,13 @@ def plot_ks(
     plt.plot(cum_good, label = 'Cumulative good', color = colorY, linewidth = 2)
     plt.plot(cum_bad, label = 'Cumulative bad', color = colorG, linewidth = 2)
     plt.vlines(
-            ks_idx,
-            ymin = min(cg, cb),
-            ymax = max(cg, cb),
-            colors = "red",
-            linestyles = "--",
-            linewidth = 2,
-        )
+        ks_idx,
+        ymin = min(cg, cb),
+        ymax = max(cg, cb),
+        colors = "red",
+        linestyles = "--",
+        linewidth = 2,
+    )
     plt.plot([], [], ' ', label = f"KS: {ks * 100:.2f}%")
     plt.gca().set_yticklabels([f'{y * 100:.2f}%' for y in plt.gca().get_yticks()])
     plt.gca().set_xticklabels([f'B{int(i + 1)}' for i in plt.gca().get_xticks()])
