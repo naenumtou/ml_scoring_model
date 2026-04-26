@@ -148,8 +148,20 @@ def plot_ks(
     plt.figure(figsize = (10, 6))
     colorY = '#ffd500' #Set color theme --> Yellow
     colorG = '#808080' #Set color theme --> Gray
-    plt.plot(cum_good, label = 'Cumulative good', color = colorY, linewidth = 2)
-    plt.plot(cum_bad, label = 'Cumulative bad', color = colorG, linewidth = 2)
+    plt.plot(
+        range(0, len(cum_good)),
+        cum_good,
+        label = 'Cumulative good',
+        color = colorY,
+        linewidth = 2
+    )
+    plt.plot(
+        range(0, len(cum_bad)),
+        cum_bad,
+        label = 'Cumulative bad',
+        color = colorG,
+        linewidth = 2
+    )
     plt.vlines(
         ks_idx,
         ymin = min(cg, cb),
