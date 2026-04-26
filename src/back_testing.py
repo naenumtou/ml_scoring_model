@@ -284,7 +284,6 @@ def plot_classification_monthly(
 
     return plt.show()
 
-
 # Plot monthly stability back-testing
 def plot_stability_monthly(
     month: pd.Series,
