@@ -255,12 +255,12 @@ def select_representative(
         for f in feats
     }
     selected = []
-    cluster_ids = sorted(cluster_df['cluster'].unique())  # เรียง cluster ตามลำดับจริง
+    cluster_ids = sorted(cluster_df['cluster'].unique())  #Sorted cluster
     for i, cluster_id in enumerate(cluster_ids):
         grp = cluster_df[cluster_df['cluster'] == cluster_id]
         feats = grp["feature"].tolist()
 
-        # n ตามลำดับ index ของ cluster
+        # n per cluster rank
         if isinstance(n_per_cluster, list):
             n = n_per_cluster[i] if i < len(n_per_cluster) else 1
         else:
@@ -288,7 +288,7 @@ def select_representative(
         chosen = []
         used = set()
 
-        # pass 1: group representative
+        # Pass 1: Group representative
         for g, g_feats in groups_in_cluster.items():
             if len(chosen) >= n:
                 break
@@ -296,8 +296,7 @@ def select_representative(
             chosen.append(best)
             used.add(best)
 
-        # pass 2: shap top-up
-
+        # Pass 2: Shap top-up
         for f in ranked:
             if len(chosen) >= n:
                 break
