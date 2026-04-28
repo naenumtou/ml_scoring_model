@@ -39,7 +39,7 @@ def cluster_features(
                                     The method = 'ward' uses the Ward variance minimization algorithm.
 
     Returns:
-        array           : The linkage matrix for plotting dendrogram
+        np.array        : The linkage matrix for plotting dendrogram
         pd.DataFrame    : The output of cluster analysis with cluster number mapped.
 
     Notes:
