@@ -127,21 +127,19 @@ The `run_optuna` function automates hyperparameter optimization for a CatBoost c
 * Calculate Natural Odds: Analyzes the target variable ($y$) to find the ratio of "Good" vs "Bad" customers in the real world.
 * Optimization Loop: Tests various PDO values (10 to 100) to find the "Sweet Spot" where scores are well-separated (high standard deviation) but not excessively capped at the limits (300 or 850).
 
-...Pending...
-
 #### 5.2 The Core Transformation
-The engine uses a logarithmic transformation to ensure that as risk decreases, the score increases.
+The engine uses a logarithmic transformation to ensure that as risk decreases, the score increases. The Math Behind the Score:
+* Factor: $PDO / \ln(2)$ - Determines how many points represent a doubling of odds.
+* Offset: $BaseScore - (Factor \times \ln(BaseOdds))$ - Sets the starting point of the scale.
+* Odds Calculation: $(1 - P) / P$ - Converts probability of default into **"Good"** odds.
+> Note: that we calculated the good oods by fixing the direction of risk; the higher risk corresponds to a lower score, and the lower risk to a higher score.
+* ✅ Final Score: $Offset + (Factor \times \ln(Odds))$
+> Note: Therefore, the final score formula must be used (+) operation to retain the score direction as our expectation.
 
-
-The Math Behind the Score:
-
-* Factor: $PDO / \ln(2)$ — Determines how many points represent a doubling of odds.
-* Offset: $BaseScore - (Factor \times \ln(BaseOdds))$ — Sets the starting point of the scale.
-* Odds Calculation: $(1 - P) / P$ — Converts probability of default into "Good" odds.Final Score: $Offset + (Factor \times \ln(Odds))$
+⚠️ However, if the odds are calculated using a **"Bad"** odds formulation by $P / (1 - P)$, the directionality where a higher score corresponds to lower risk must be preserved by applying a negative sign (−) in the final score formula as $Offset - (Factor \times \ln(Odds))$.
 
 #### 5.3 Segmentation & Binning
 _Goal: Categorize scores into actionable risk bands._
-
 
 Once scores are generated, we must decide how to group them. This code supports three distinct strategies:
 * 📏 Equal Interval: Splits the score range (e.g., 300–850) into equal-sized chunks.
@@ -149,17 +147,27 @@ Once scores are generated, we must decide how to group them. This code supports 
 * 🔔 Normal Distribution: Uses statistical probability (mean and standard deviation) to set cut-points, focusing more resolution around the average.
 
 #### 5.4 Back-testing
-* AUC and GINI: Measures the discriminatory power of the risk bands by comparing the actual discrimination of the risk bands with the discrimination of a perfect model.
-* KS Statistic: Measures the maximum separation between the cumulative distributions of Good and Bad customers.
+* **AUC and GINI**: Measures the discriminatory power of the risk bands by comparing the actual discrimination of the risk bands with the discrimination of a perfect model.
+* **KS Statistic**: Measures the maximum separation between the cumulative distributions of Good and Bad customers.
+* **PSI**: Measure the distributional shift with respect to a risk bands between two sets of populations
 
 ### 6. Result
+The score distribution is displayed below:
 <p align="center">
 <img width="989" height="590" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/05a2f941-93a2-4d93-bb9d-792f7365e14e" />
 </p>
 
+The overall statistical tests by AUC, GINI, and KS are shown below:
+| Statistic | AUC | GINI | KS |
+|-----------|-----| ---- | -- |
+| Result | ✅ 93.32% | ✅ 86.63% | ✅ 73.49% |
+
+The back-testing in the monthly interval (same as development) are displayed below:
 <p align="center">
 <img width="1718" height="399" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/0720d0bc-a303-4c3b-9aa5-f8c829be86b9" />
 </p>
+
+> Note: The model classification abilities are strongly classified risk segments over the time.
 
 <p align="center">
 <img width="1176" height="399" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/a8eba890-caaa-4288-b2fe-9b8fff5113c1" />
