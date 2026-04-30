@@ -149,10 +149,23 @@ Once scores are generated, we must decide how to group them. This code supports 
 * 🔔 Normal Distribution: Uses statistical probability (mean and standard deviation) to set cut-points, focusing more resolution around the average.
 
 #### 5.4 Back-testing
+* AUC and GINI: Measures the discriminatory power of the risk bands by comparing the actual discrimination of the risk bands with the discrimination of a perfect model.
 * KS Statistic: Measures the maximum separation between the cumulative distributions of Good and Bad customers.
 
 ### 6. Result
-...
+<p align="center">
+<img width="989" height="590" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/05a2f941-93a2-4d93-bb9d-792f7365e14e" />
+</p>
+
+<p align="center">
+<img width="1718" height="399" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/0720d0bc-a303-4c3b-9aa5-f8c829be86b9" />
+</p>
+
+<p align="center">
+<img width="1176" height="399" alt="B-Score model แบบใช้ Machine learning model ในการพัฒนา" src="https://github.com/user-attachments/assets/a8eba890-caaa-4288-b2fe-9b8fff5113c1" />
+</p>
+
+> Note: Very first of historical point, the data was not stable.
 
 ## License
 MIT · Built for learning purposes
