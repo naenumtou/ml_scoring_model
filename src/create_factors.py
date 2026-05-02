@@ -148,7 +148,6 @@ def _consecutive_long_vectorised(
 
     return run
 
-
 # Rename and sort
 def prepare_dataframe(
     df: pd.DataFrame,
