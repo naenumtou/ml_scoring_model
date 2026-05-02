@@ -36,7 +36,7 @@ def run_boruta(
         random_state (int)                  : The controls the randomness.
 
     Returns:
-        list            : List of selected features
+        list            : List of selected features.
         pd.DataFrame    : Summary of Features Importance of all features for documenation.
 
     Notes:
