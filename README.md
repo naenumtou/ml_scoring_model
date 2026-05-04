@@ -22,7 +22,9 @@ The workflow follows industry-standard model development practices.
 ## Project Structure
 ```
 ml_scoring_model/
-├── models/       #Trainned model (.cbm) and study parameters (pkl.)
+├── models/ 
+│   ├── model.cbm            #Trainned model (.cbm)
+│   └── model_study.pkl      #Study parameters (pkl.)
 ├── notebooks/
 │   ├── 01_factor_creation.ipynb
 │   ├── 02_data_sampling.ipynb
@@ -38,7 +40,7 @@ ml_scoring_model/
 │   ├── model_builder.py
 │   ├── score_construct.py
 │   └── back_testing.py
-├── data/         #Not tracked by git
+├── data/                    #Not tracked by git
 ├── requirements.txt
 └── README.md
 ```
