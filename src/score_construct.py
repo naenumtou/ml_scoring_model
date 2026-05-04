@@ -29,7 +29,7 @@ def _prob_to_score(
         Therefore, the PDO Formula is used (+) offset, meaning high score --> low risk.
 
     Args:
-        prob (np.array)     : The trained model from best parameters.
+        prob (np.ndarray)   : The trained model from best parameters.
         pdo (int)           : PDO is the number of scorecard points required to double the odds of being a Good customer.
                             25 means every 25-point increase in the score means the Good-to-Bad odds are doubled.
         base_score (int)    : The base score is the score assigned when the odds equal the base odds.
@@ -37,7 +37,7 @@ def _prob_to_score(
         base_odds (int)     : Base odds represent the reference odds of being Good vs Bad at the base score.
 
     Returns:
-        np.array: Calculated score from probability.
+        np.ndarray: Calculated score from probability.
 
     Notes:
         - If the key interest is logit function to log(odds of bad) --> log(P(Bad) / P(Good)).
