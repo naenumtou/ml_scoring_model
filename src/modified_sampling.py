@@ -42,7 +42,7 @@ def _odr(
 # Monthly ODR
 def _monthly_odr(
     data_group: pd.DataFrame,
-    cons: np.array
+    cons: list
 ) -> pd.Series:
 
     """
