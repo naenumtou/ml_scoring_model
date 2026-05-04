@@ -80,7 +80,7 @@ def _consecutive_run_vectorised(
         threshold (int)     : The value of interest.
 
     Returns:
-        np.array: A 1-D numpy array of length len(df).
+        np.ndarray: A 1-D numpy array of length len(df).
 
     Notes:
         - N/A.
