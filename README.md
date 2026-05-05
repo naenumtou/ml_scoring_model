@@ -23,8 +23,8 @@ The workflow follows industry-standard model development practices.
 ```
 ml_scoring_model/
 ├── models/ 
-│   ├── model.cbm            #Trainned model (.cbm)
-│   └── model_study.pkl      #Study parameters (pkl.)
+│   ├── model.cbm          #Trainned model (.cbm)
+│   └── model_study.pkl          #Study parameters (pkl.)
 ├── notebooks/
 │   ├── 01_factor_creation.ipynb
 │   ├── 02_data_sampling.ipynb
@@ -40,7 +40,15 @@ ml_scoring_model/
 │   ├── model_builder.py
 │   ├── score_construct.py
 │   └── back_testing.py
-├── data/                    #Not tracked by git
+├── data/          
+│   ├── processed/
+|   |   ├── behaviour_factors.parquet          #Not tracked by git
+|   |   ├── train_data.parquet          #Not tracked by git
+|   |   ├── test_data.parquet          #Not tracked by git
+|   |   └── usedcar_transaction_score.parquet          #Not tracked by git
+│   └── raw/
+|   |   ├── usedcar_transaction.parquet          #Not tracked by git
+|   |   └── longlistFactor.csv
 ├── requirements.txt
 └── README.md
 ```
