@@ -10,6 +10,7 @@ warnings.filterwarnings('ignore', category = RuntimeWarning)
 warnings.filterwarnings('ignore', category = UserWarning)
 
 # Helper functions
+# Safe divide avoid 0
 def _safe_div(
     numerator: pd.Series,
     denominator: pd.Series
@@ -34,6 +35,7 @@ def _safe_div(
 
     return np.where(denominator == 0, 0, numerator / denominator)
 
+# Lag n columns
 def _lag_cols(
     base: str,
     n: int
@@ -58,6 +60,7 @@ def _lag_cols(
 
     return [f"{base}{i}" for i in range(1, n + 1)]
 
+# Consecutive count
 def _consecutive_run_vectorised(
     df: pd.DataFrame,
     base: str,
@@ -106,6 +109,7 @@ def _consecutive_run_vectorised(
 
     return run
 
+# Consecutive count
 def _consecutive_long_vectorised(
     df: pd.DataFrame,
     base: str,
