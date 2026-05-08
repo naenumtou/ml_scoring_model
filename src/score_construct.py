@@ -13,6 +13,7 @@ warnings.filterwarnings('ignore', category = RuntimeWarning)
 warnings.filterwarnings('ignore', category = UserWarning)
 
 # Helper functions
+# Compute score from probability
 def _prob_to_score(
     prob: np.ndarray,
     pdo: int,
