@@ -48,7 +48,7 @@ ml_scoring_model/
 |   |   └── usedcar_transaction_score.parquet          #Not tracked by git
 │   └── raw/
 |   |   ├── usedcar_transaction.parquet          #Not tracked by git
-|   |   └── longlistFactor.csv
+|   └── └── longlistFactor.csv
 ├── requirements.txt
 └── README.md
 ```
