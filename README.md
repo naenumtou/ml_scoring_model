@@ -22,8 +22,8 @@ The workflow follows industry-standard model development practices.
 ## Project Structure
 ```
 ml_scoring_model/
-├── models/ 
-│   ├── model.cbm          #Trainned model (.cbm)
+├── model/ 
+│   ├── model.cbm                #Trainned model (.cbm)
 │   └── model_study.pkl          #Study parameters (pkl.)
 ├── notebooks/
 │   ├── 01_factor_creation.ipynb
@@ -42,10 +42,10 @@ ml_scoring_model/
 │   └── back_testing.py
 ├── data/          
 │   ├── processed/
-|   |   ├── behaviour_factors.parquet          #Not tracked by git
-|   |   ├── train_data.parquet          #Not tracked by git
-|   |   ├── test_data.parquet          #Not tracked by git
-|   |   └── usedcar_transaction_score.parquet          #Not tracked by git
+|   |   ├── behaviour_factors.parquet            #Not tracked by git
+|   |   ├── train_data.parquet                   #Not tracked by git
+|   |   ├── test_data.parquet                    #Not tracked by git
+|   |   └── usedcar_transaction_score.parquet    #Not tracked by git
 │   └── raw/
 |   |   ├── usedcar_transaction.parquet          #Not tracked by git
 |   └── └── longlistFactor.csv
