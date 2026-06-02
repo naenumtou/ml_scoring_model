@@ -6,6 +6,8 @@
 ![Scikit-learn](https://img.shields.io/badge/scikit--learn-ML-orange?logo=scikitlearn&style=for-the-badge)
 ![LightGBM](https://img.shields.io/badge/LightGBM-Boosting-success?logo=lightgbm&style=for-the-badge)
 ![CatBoost](https://img.shields.io/badge/CatBoost-Gradient%20Boosting-yellow?logo=catboost&style=for-the-badge)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-blueviolet?style=for-the-badge&logo=Plotly&logoColor=white)
+![Seaborn](https://img.shields.io/badge/Seaborn-Visualization-3775a9?style=for-the-badge&logo=plotly&logoColor=white)
 ![MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 Machine Learning–based scoring model for risk / propensity / credit-style scoring.
